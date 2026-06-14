@@ -4,7 +4,7 @@
   "description": "Este é um projeto acadêmico para prática de desenvolvimento de software mais especificamente a aplicação do paradigma orientado objeto (POO) e seus conceitos, implementação de aplicações WEB e APIs, integração com banco de dados, utilização de testes automatizados, tudo em conformidade com princípios e padrões de arquitetura e projeto além de observância às boas práticas de desenvolvimento. Uso do ambiente de execução node e linguagem de programação TypeScript.",
   "license": "ISC",
   "author": "Luigi Araujo",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
