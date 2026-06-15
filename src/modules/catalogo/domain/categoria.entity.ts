@@ -20,7 +20,6 @@ class Categoria implements ICategoria {
         this._id = value;
     }
     private set nome(value: string) {
-        console.log(value)
         if (value === null || value === undefined){
             throw Error("Nome da categoria e nulo ou indefinido")
         }
