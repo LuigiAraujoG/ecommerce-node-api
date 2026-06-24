@@ -1,25 +1,18 @@
-import type {ICategoria, CriarCategoriaProps} from "./categoria.types.js";
+import type {ICategoria, CriarCategoriaProps, RecuperarCategoriaProps} from "./categoria.types.js";
 import { NomeCategoriaNuloOuIndefinido, NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception.js";
+import { randomUUID } from "node:crypto";
+import { Entity } from "../../../shared/domain/entity.js";
 
-class Categoria implements ICategoria {
+class Categoria extends Entity<ICategoria> implements ICategoria {
     //Atributos de classe
-
-    private _id: string;
     private _nome: string;
 
     // Gets e sets
 
-    public get id(): string {
-        return this._id;
-    }
-
     public get nome(): string {
         return this._nome;
     }
-
-    private set id(value: string) {
-        this._id = value;
-    }
+    
     private set nome(value: string) {
         if (value === null || value === undefined){
             throw new NomeCategoriaNuloOuIndefinido();
@@ -38,16 +31,19 @@ class Categoria implements ICategoria {
     //Construtor
 
     private constructor(categoria:ICategoria){
-        this.id = categoria.id;
+        super(categoria.id);
         this.nome = categoria.nome;
     }
 
     // Static Factory Method
 
     public static criar(props: CriarCategoriaProps): Categoria {
-        let id = "12345";
         let {nome} = props;
-        return new Categoria({id, nome});
+        return new Categoria({nome});
+    }
+
+    public static recuperar(props: RecuperarCategoriaProps): Categoria {
+        return new Categoria(props)
     }
 
 }
