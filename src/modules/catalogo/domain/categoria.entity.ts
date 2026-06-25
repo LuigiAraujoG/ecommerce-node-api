@@ -2,6 +2,7 @@ import type {ICategoria, CriarCategoriaProps, RecuperarCategoriaProps} from "./c
 import { NomeCategoriaNuloOuIndefinido, NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception.js";
 import { randomUUID } from "node:crypto";
 import { Entity } from "../../../shared/domain/entity.js";
+import { CategoriaMap } from "../mappers/categoria.map.js";
 
 class Categoria extends Entity<ICategoria> implements ICategoria {
     //Atributos de classe
@@ -44,6 +45,12 @@ class Categoria extends Entity<ICategoria> implements ICategoria {
 
     public static recuperar(props: RecuperarCategoriaProps): Categoria {
         return new Categoria(props)
+    }
+
+    //Método
+
+    public toDTO():ICategoria {
+        return CategoriaMap.toDTO(this);
     }
 
 }
